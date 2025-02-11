@@ -7,7 +7,6 @@ use anyhow::Result;
 use args::Args;
 use clap::Parser;
 use log::{debug, error, info, warn};
-use filter::{date_filter};
 
 /*
  * Run with "RUST_LOG="debug" cargo run".
@@ -35,10 +34,10 @@ fn main() -> Result<()> {
     let names = entries.map(|x| x.file_name());
 
     /* Remove all the name which should not be deleted by the pipeline. */
-    let remaining = names.filter(date_filter);
+    //let remaining = names.filter(date_filter);
 
     /* Write out the names which should be deleted by the pipeline. */
-    println!("{remaining:?}");
+    //println!("{remaining:?}");
 
     Ok(())
 }

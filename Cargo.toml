@@ -2,9 +2,23 @@
 name = "datefilter"
 version = "0.1.0"
 edition = "2021"
+description = "FInd all the dated directory entries which you may want to move or delete."
+license = "None"
+authors = ["fadedbee <datefilter@fadedbee.com>"]
+publish = false
+
+[package.metadata.deb]
+assets = [
+    # binary
+    ["target/release/datefilter", "usr/bin/", "755"],
+]
+maintainer-scripts = "debian/"
+depends = ""
 
 [dependencies]
-anyhow = "1.0.95"
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+chrono = "0.4.39"
 clap = { version = "4.5.28", features = ["derive"] }
 env_logger = "0.11.6"
 log = "0.4.25"
+regex = "1.11.1"
