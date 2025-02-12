@@ -15,14 +15,11 @@ use clap::Parser;
 #[command(author, version, about, long_about = None)]
 pub struct Args {
     #[arg(short, long, default_value_t = 28)]
-    pub days: u32,
+    pub days: u16,
 
-    #[arg(short, long, default_value_t = 28)]
-    pub months: u32,
+    #[arg(short, long, default_value_t = 12)]
+    pub months: u8,
 
-    #[arg(short, long, default_value_t = 28)]
-    pub years: u32,
-
-    #[clap(value_name = "PATH")]
-    pub path: String,
+    #[arg(short, long, default_value_t = 100)]
+    pub years: u16,
 }

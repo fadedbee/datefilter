@@ -1,11 +1,13 @@
 mod args;
 mod filter;
 
-use std::{collections::BTreeSet, fs::{self, DirEntry}, process::exit};
+use std::{collections::BTreeSet, fs::{self, DirEntry}, io::{stdin, BufRead}, process::exit};
 
 use anyhow::Result;
 use args::Args;
+use chrono::{Local, NaiveDate};
 use clap::Parser;
+use filter::{DateFilter, Outcome};
 use log::{debug, error, info, warn};
 
 /*
@@ -19,25 +21,21 @@ fn main() -> Result<()> {
     let args = Args::parse();
     debug!("args {args:?}");
 
-    let entry_results = match fs::read_dir(args.path) {
-        Ok(entry_results) => entry_results,
-        Err(err) => {
-            error!("Error: {err}");
-            exit(-1);
-        },
-    };
+    /* Make a DateFilter. */
+    let today = Local::now().naive_local();
+    let filter = DateFilter::new(today.into(), args.days, args.months, args.years);
 
-    /* Remove error results. */
-    let entries = entry_results.filter_map(|x| x.ok());
-
-    /* Turn directory entries into file and directory names. */
-    let names = entries.map(|x| x.file_name());
-
-    /* Remove all the name which should not be deleted by the pipeline. */
-    //let remaining = names.filter(date_filter);
-
-    /* Write out the names which should be deleted by the pipeline. */
-    //println!("{remaining:?}");
+    /* Read from stdin. */
+    for line_result in stdin().lock().lines() {
+        let Ok(line) = line_result else {
+            break
+        };
+        for word in line.split_whitespace() {
+            if filter.check(word) == Outcome::Pass {
+                println!("{word}");
+            }
+        }
+    }
 
     Ok(())
 }
