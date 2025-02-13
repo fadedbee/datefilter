@@ -1,9 +1,9 @@
 [package]
 name = "datefilter"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 description = "FInd all the dated directory entries which you may want to move or delete."
-license = "None"
+license = "Apache2"
 authors = ["fadedbee <datefilter@fadedbee.com>"]
 publish = true
 
