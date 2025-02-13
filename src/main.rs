@@ -1,14 +1,14 @@
 mod args;
 mod filter;
 
-use std::{collections::BTreeSet, fs::{self, DirEntry}, io::{stdin, BufRead}, process::exit};
+use std::io::{stdin, BufRead};
 
 use anyhow::Result;
 use args::Args;
-use chrono::{Local, NaiveDate};
+use chrono::Local;
 use clap::Parser;
 use filter::{DateFilter, Outcome};
-use log::{debug, error, info, warn};
+use log::debug;
 
 /*
  * Run with "RUST_LOG="debug" cargo run".
@@ -27,9 +27,7 @@ fn main() -> Result<()> {
 
     /* Read from stdin. */
     for line_result in stdin().lock().lines() {
-        let Ok(line) = line_result else {
-            break
-        };
+        let Ok(line) = line_result else { break };
         for word in line.split_whitespace() {
             if filter.check(word) == Outcome::Pass {
                 println!("{word}");
@@ -39,5 +37,3 @@ fn main() -> Result<()> {
 
     Ok(())
 }
-
-

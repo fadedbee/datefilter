@@ -1,11 +1,11 @@
 [package]
 name = "datefilter"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "FInd all the dated directory entries which you may want to move or delete."
 license = "None"
 authors = ["fadedbee <datefilter@fadedbee.com>"]
-publish = false
+publish = true
 
 [package.metadata.deb]
 assets = [
