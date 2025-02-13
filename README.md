@@ -1,7 +1,7 @@
 # datefilter
-Filters filenames on stdin to exclude filenames for dates which should be kept, and filenames not containing dates.
+Filter filenames on stdin to exclude filenames for dates which should be kept, and filenames not containing dates.
 
-This is intended to be part of a pipeline for removing old dated files or ZFS snapshots.
+This is intended to be part of a pipeline for removing old dated files or old ZFS snapshots.
 
 ## Usage
 $ ls *.backup | datefilter --days=31 --months=12 --years=10 | xargs rm 

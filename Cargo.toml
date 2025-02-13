@@ -1,11 +1,13 @@
 [package]
 name = "datefilter"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
-description = "FInd all the dated directory entries which you may want to move or delete."
+description = "Filter filenames on stdin to exclude filenames for dates which should be kept, and filenames not containing dates."
 license = "Apache-2.0"
 authors = ["fadedbee <datefilter@fadedbee.com>"]
 publish = true
+readme = "README.md"
+repository = "https://github.com/fadedbee/datefilter"
 
 [package.metadata.deb]
 assets = [
