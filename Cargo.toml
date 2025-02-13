@@ -1,6 +1,6 @@
 [package]
 name = "datefilter"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 description = "FInd all the dated directory entries which you may want to move or delete."
 license = "Apache-2.0"
